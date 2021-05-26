@@ -22,5 +22,6 @@ export class Todo extends BaseModel {
         name: 'CategoryUTodo'
     })
     public categories?: Category[];
+    
 
 }
