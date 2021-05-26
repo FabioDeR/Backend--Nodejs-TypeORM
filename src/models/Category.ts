@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, OneToMany } from 'typeorm';
 import { BaseModel } from './Basemodel';
 import { Todo } from './Todo.model';
 
@@ -8,10 +8,9 @@ export class Category extends BaseModel{
             nullable: false,
             unique:true
         })
-        public title?: string
+        public title?: string      
 
-
-        @OneToMany(()=> Todo, todo => todo.category)
-        public todos? : Todo[]
+        @ManyToMany(()=> Todo, todo => todo.categories)
+        public todos?: Todo[];
 
 }

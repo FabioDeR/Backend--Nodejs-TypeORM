@@ -20,4 +20,11 @@ export class User extends BaseModel {
     @OneToMany(() => Todo, todo => todo.user)
     public todo?:Todo[];
 
+    /**
+     * Propriété dite "virtuelle", car elle n'est pas en DB
+     */
+     get fullName() {
+        return `${this.pseudo} ${this.email}`;
+    }
+
 }

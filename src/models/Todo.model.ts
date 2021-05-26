@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToMany, ManyToOne, OneToMany } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany } from 'typeorm';
 import { BaseModel } from './Basemodel';
 import { Category } from './Category';
 import { User } from './User.model';
@@ -17,7 +17,10 @@ export class Todo extends BaseModel {
     @ManyToOne(()=> User, user => user.todo)
     public user? : User
 
-    @ManyToOne(() => Category, category => category.todos)
-    public category? : Category
+    @ManyToMany(()=> Category, category => category.todos)
+    @JoinTable({
+        name: 'CategoryUTodo'
+    })
+    public categories?: Category[];
 
 }
